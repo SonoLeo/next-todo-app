@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply xl:text-2xl lg:text-lg md:text-base sm:text-sm;
+}
