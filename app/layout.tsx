@@ -1,9 +1,12 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import AuthProvider from "../components/AuthProvider";
 import NavBar from "@/components/NavBar";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  weight: ["900", "100", "300", "400", "500", "700"],
+  subsets: ["latin"],
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -19,7 +22,7 @@ export default function RootLayout({
   return (
     <AuthProvider>
       <html lang="en">
-        <body className={`${inter.className} h-screen`}>
+        <body className={`${roboto.className} h-screen`}>
           <NavBar />
           {children}
         </body>
