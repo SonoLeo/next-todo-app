@@ -6,7 +6,7 @@ export default function Home() {
     <main className="flex justify-center items-center p-8 flex-col">
       <h1 className="p-4">
         Welcome to{" "}
-        <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-tr from-blue-800 to-slate-700">
+        <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-tr from-blue-300 to-cyan-700">
           TaskMaster
         </span>
         !

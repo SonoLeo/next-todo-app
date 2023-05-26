@@ -22,7 +22,9 @@ export default function RootLayout({
   return (
     <AuthProvider>
       <html lang="en">
-        <body className={`${roboto.className} h-screen`}>
+        <body
+          className={`${roboto.className} h-screen bg-gradient-to-l from-cyan-100 via-sky-100 to-blue-100`}
+        >
           <NavBar />
           {children}
         </body>
