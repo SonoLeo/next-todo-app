@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -26,6 +26,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@heroicons/react": "^2.0.18",
     "prisma": "^4.14.1"
   }
 }

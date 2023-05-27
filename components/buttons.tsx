@@ -3,6 +3,10 @@
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
+import {
+  ArrowLeftOnRectangleIcon,
+  ArrowRightOnRectangleIcon,
+} from "@heroicons/react/20/solid";
 
 export function SignInButton() {
   const { data: session, status } = useSession();
@@ -26,10 +30,11 @@ export function SignInButton() {
 
   return (
     <button
-      className="hover:bg-blue-700 hover:text-slate-100 text-slate-950 transition-all duration-200 border-none font-bold bg-slate-100 px-4 py-2 rounded-lg"
+      className="hover:bg-blue-700 hover:text-slate-100 text-slate-950 transition-all duration-200 border-none font-bold bg-slate-100 md:px-4 p-2 rounded-lg"
       onClick={() => signIn()}
     >
-      Sign In
+      <span className="md:inline hidden">Sign In</span>
+      <ArrowLeftOnRectangleIcon className="md:hidden w-8" />
     </button>
   );
 }
@@ -40,10 +45,11 @@ export function SignOutButton() {
   if (status === "authenticated") {
     return (
       <button
-        className="hover:bg-blue-700 hover:text-slate-100 text-slate-950 transition-all duration-200 border-none font-bold bg-slate-100 px-4 py-2 rounded-lg"
+        className="hover:bg-blue-700 hover:text-slate-100 text-slate-950 transition-all duration-200 border-none font-bold bg-slate-100 md:px-4 p-2 rounded-lg"
         onClick={() => signOut()}
       >
-        Log Out
+        <span className="md:inline hidden">Log Out</span>
+        <ArrowRightOnRectangleIcon className="md:hidden w-8" />
       </button>
     );
   } else return <></>;

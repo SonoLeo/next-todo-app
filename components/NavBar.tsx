@@ -1,28 +1,30 @@
 import React from "react";
 import Link from "next/link";
 import { SignInButton, SignOutButton } from "./buttons";
+import HamburgerMenu from "./HamburgerMenu";
+import { HomeIcon } from "@heroicons/react/24/solid";
 
 function NavBar() {
   return (
-    <nav className="flex h-16 text-xl justify-around items-center p-8 bg-slate-800 text-slate-100 w-full">
+    <div className="inline-flex text-xl justify-between items-start md:items-center p-8 bg-slate-800 text-slate-100 w-full">
       <div>
-        <Link
-          className="font-extrabold text-transparent bg-clip-text bg-gradient-to-tr from-slate-200 to-slate-400"
-          href="/"
-        >
-          TaskMaster
+        <Link href="/">
+          <span className="hidden md:inline font-extrabold text-transparent bg-clip-text bg-gradient-to-tr from-slate-200 to-slate-400">
+            TaskMaster
+          </span>
+          <HomeIcon className="md:hidden w-10" />
         </Link>
       </div>
-      <div className="flex gap-8">
+      <HamburgerMenu>
         <Link href="/tasks/">🗒️Your Tasks</Link>
         <Link href="/tasks/">⭐Favorites</Link>
-        <Link href="/about/">ℹ️ About</Link>
-      </div>
+        <Link href="/about/">ℹ️About</Link>
+      </HamburgerMenu>
       <div className="flex items-center gap-3">
         <SignInButton />
         <SignOutButton />
       </div>
-    </nav>
+    </div>
   );
 }
 
