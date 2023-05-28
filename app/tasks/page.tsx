@@ -3,8 +3,11 @@ import { authOptions } from "../api/auth/[...nextauth]/route";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import ListCard from "@/components/ListCard";
+import { Metadata } from "next";
 
 // TODO: display data on the page using a ListCard component
+
+export const metadata: Metadata = {};
 
 async function page() {
   const session = await getServerSession(authOptions);
@@ -17,19 +20,17 @@ async function page() {
     where: { userId: session?.user.id },
   });
 
+  metadata.title = `${session.user.name}'s tasks`;
+
   console.log(data);
 
-  return data.map((list, i) => {
-    return (
-      <ListCard
-        key={i}
-        name={list.name}
-        description={list.description}
-        emoji={list.emoji}
-        date={list.createdAt}
-      />
-    );
-  });
+  return (
+    <div className="flex items-center justify-center">
+      <div className="w-8/12 flex flex-col md:flex-row gap-6 p-4 h-screen">
+        <ListCard task={data} />
+      </div>
+    </div>
+  );
 }
 
 export default page;

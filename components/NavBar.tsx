@@ -17,7 +17,7 @@ function NavBar() {
       </div>
       <HamburgerMenu>
         <Link href="/tasks/">🗒️Your Tasks</Link>
-        <Link href="/tasks/">⭐Favorites</Link>
+        <Link href="/tasks/favorites">⭐Favorites</Link>
         <Link href="/about/">ℹ️About</Link>
       </HamburgerMenu>
       <div className="flex items-center gap-3">

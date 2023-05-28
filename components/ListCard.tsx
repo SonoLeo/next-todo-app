@@ -1,27 +1,41 @@
 interface Props {
-  emoji: string | null;
-  name: string;
-  description: string | null;
-  date: Date;
+  task: {
+    id: number;
+    emoji: string | null;
+    name: string;
+    description: string | null;
+    createdAt: Date;
+  }[];
 }
-function ListCard({ emoji, name, description, date }: Props) {
+function ListCard({ task }: Props) {
   return (
-    <div>
-      <h1>{name.charAt(0).toUpperCase() + name.slice(1)}</h1>
-      <div>
-        <div>{emoji}</div>
-        <div>{description}</div>
-      </div>
-      <div>
-        {Intl.DateTimeFormat("en-US", {
-          hour: "2-digit",
-          minute: "2-digit",
-          day: "2-digit",
-          month: "2-digit",
-          year: "2-digit",
-        }).format(date)}
-      </div>
-    </div>
+    <>
+      {task.map((t, i) => {
+        return (
+          <div
+            key={i}
+            className="bg-slate-500/50 flex flex-col flex-wrap h-fit md:w-80 p-8 rounded-lg cursor-pointer"
+          >
+            <h1 className="font-bold text-xl">
+              {t.name.charAt(0).toUpperCase() + t.name.slice(1)}
+            </h1>
+            <div className="flex gap-2">
+              <div>{t.emoji} 🙉</div>
+              <div>{t.description} Something serious</div>
+            </div>
+            <div className="text-xs flex justify-end pt-3">
+              {Intl.DateTimeFormat("en-US", {
+                hour: "2-digit",
+                minute: "2-digit",
+                day: "2-digit",
+                month: "2-digit",
+                year: "2-digit",
+              }).format(t.createdAt)}
+            </div>
+          </div>
+        );
+      })}
+    </>
   );
 }
 

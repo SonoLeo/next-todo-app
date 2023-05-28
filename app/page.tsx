@@ -1,5 +1,12 @@
 import Image from "next/image";
 import tasks from "../public/tasks.svg";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "TaskMaster Home",
+};
+
+// TODO: change image to match the colors in the page
 
 export default function Home() {
   return (
