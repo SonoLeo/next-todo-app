@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface Props {
   task: {
     id: number;
@@ -12,9 +14,10 @@ function ListCard({ task }: Props) {
     <>
       {task.map((t, i) => {
         return (
-          <div
+          <Link
             key={i}
-            className="bg-slate-500/50 flex flex-col flex-wrap h-fit md:w-80 p-8 rounded-lg cursor-pointer"
+            className="hover:rounded-2xl transition-all duration-300 bg-slate-400/50 flex flex-col flex-wrap h-fit md:w-80 p-8 rounded-lg cursor-pointer shadow-md"
+            href={`/tasks/${t.id}`}
           >
             <h1 className="font-bold text-xl">
               {t.name.charAt(0).toUpperCase() + t.name.slice(1)}
@@ -32,7 +35,7 @@ function ListCard({ task }: Props) {
                 year: "2-digit",
               }).format(t.createdAt)}
             </div>
-          </div>
+          </Link>
         );
       })}
     </>

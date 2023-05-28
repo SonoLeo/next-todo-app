@@ -12,7 +12,9 @@ function HamburgerMenu({ children }: Props) {
   return (
     <div className="space-y-8">
       <div
-        className="space-y-1 md:hidden p-4"
+        className={`space-y-1 md:hidden p-4 transition-all duration-300 ${
+          hamburgerClicked && "rotate-180"
+        }`}
         onClick={() => setHamburgerClicked(!hamburgerClicked)}
       >
         <div className="w-8 bg-gray-300 h-1 rounded-md mx-auto"></div>
