@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TrashIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
 
@@ -10,13 +10,6 @@ interface Props {
   name: string;
   createdAt: Date;
 }
-
-// const isTaskCompleted = async (id: number): Promise<boolean> => {
-//   const res = await fetch(`/api/task/current/${id}`, { method: "GET" });
-//   const data: { completed: boolean } = await res.json();
-
-//   return data.completed;
-// };
 
 const editTaskCompleted = async (id: number, isChecked: boolean) => {
   const res = await fetch(`/api/task/edit/`, {
@@ -35,13 +28,6 @@ const handleDelete = async (id: number) => {
 function CheckBox({ id, completed, name, createdAt }: Props) {
   const [isChecked, setIsChecked] = useState(completed);
   const router = useRouter();
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     setIsChecked(await isTaskCompleted(id));
-  //   };
-  //   getData();
-  // }, []);
 
   return (
     <>

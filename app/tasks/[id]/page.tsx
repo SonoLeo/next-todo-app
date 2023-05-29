@@ -36,15 +36,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 async function getCurrentTasks(id: string): Promise<(List & Task) | null> {
-  return await prisma.list.findUnique({
+  const idNum = Number(id);
+
+  const result = await prisma.list.findUnique({
     include: {
       tasks: {
         select: { id: true, name: true, completed: true, createdAt: true },
         orderBy: { id: "asc" },
       },
     },
-    where: { id: Number(id) },
+    where: { id: idNum },
   });
+
+  return result;
 }
 
 async function page({ params }: Props) {
@@ -58,7 +62,9 @@ async function page({ params }: Props) {
 
   return (
     <div className="md:w-8/12 md:flex md:flex-col h-screen md:mx-auto p-8 gap-3">
-      {data?.tasks.length ? (
+      {!data ? (
+        redirect("/lists")
+      ) : data?.tasks.length ? (
         data?.tasks.map((task, i) => (
           <div
             key={i}

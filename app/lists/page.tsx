@@ -4,8 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import ListCard from "@/components/ListCard";
 import { Metadata } from "next";
-
-// TODO: display data on the page using a ListCard component
+import ListInputForm from "@/components/ListInputForm";
 
 export const metadata: Metadata = {};
 
@@ -31,6 +30,7 @@ async function page() {
           <div>No lists found. Get started by adding a list.</div>
         )}
       </div>
+      <ListInputForm />
     </div>
   );
 }
