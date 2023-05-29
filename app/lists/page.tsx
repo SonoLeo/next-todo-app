@@ -22,8 +22,6 @@ async function page() {
 
   metadata.title = `${session.user.name}'s tasks`;
 
-  console.log(data);
-
   return (
     <div className="flex items-center justify-center">
       <div className="grid grid-rows-1 w-full md:w-8/12 md:flex md:justify-around p-4 gap-3">
