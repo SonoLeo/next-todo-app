@@ -6,7 +6,7 @@ import { HomeIcon } from "@heroicons/react/24/solid";
 
 function NavBar() {
   return (
-    <div className="sticky top-0 inline-flex text-xl justify-between items-start md:items-center p-8 bg-slate-800 text-slate-100 w-full">
+    <div className="z-50 sticky top-0 inline-flex text-xl justify-between items-start md:items-center p-8 bg-slate-800 text-slate-100 w-full">
       <div>
         <Link href="/">
           <span className="hidden md:inline font-extrabold text-transparent bg-clip-text bg-gradient-to-tr from-slate-200 to-slate-400">

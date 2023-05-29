@@ -13,5 +13,5 @@ export async function POST(req: Request) {
   console.log(res);
   console.log(completed + " " + id);
 
-  return NextResponse.json("task updated");
+  return NextResponse.json({ status: 200 });
 }
