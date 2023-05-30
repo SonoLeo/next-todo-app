@@ -22,16 +22,18 @@ async function page() {
   metadata.title = `${session.user.name}'s tasks`;
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="grid grid-rows-1 w-full md:w-8/12 md:flex md:justify-around p-4 gap-3">
-        {data.length ? (
-          <ListCard task={data} />
-        ) : (
-          <div>No lists found. Get started by adding a list.</div>
-        )}
+    <>
+      <div className="flex justify-center h-fit">
+        <div className="grid w-full md:w-8/12 md:flex md:flex-wrap p-4 gap-3">
+          {data.length ? (
+            <ListCard task={data} />
+          ) : (
+            <div>No lists found. Get started by adding a list.</div>
+          )}
+        </div>
       </div>
       <ListInputForm />
-    </div>
+    </>
   );
 }
 
