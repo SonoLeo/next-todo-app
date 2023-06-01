@@ -1,5 +1,6 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import TaskCard from "@/components/TaskCard";
+import TaskInputForm from "@/components/TaskInputForm";
 import { prisma } from "@/lib/prisma";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
@@ -62,7 +63,7 @@ async function page({ params }: Props) {
   const data = await getCurrentTasks(params.id);
 
   return (
-    <div className="md:w-8/12 md:flex md:flex-col h-screen md:mx-auto p-8 gap-3">
+    <div className="md:w-8/12 md:flex md:flex-col md:mx-auto p-8 mb-8 gap-3">
       {!data ? (
         redirect("/lists")
       ) : data?.tasks.length ? (
@@ -82,6 +83,7 @@ async function page({ params }: Props) {
       ) : (
         <div>No tasks found. Get started by adding a task!</div>
       )}
+      <TaskInputForm listId={Number(params.id)} />
     </div>
   );
 }
