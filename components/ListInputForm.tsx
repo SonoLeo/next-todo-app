@@ -26,6 +26,7 @@ const handleClick = async (
 
   const res = await fetch("/api/list/insert", {
     method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ...inputForm, userId: session.user.id }),
   });
 };
@@ -68,7 +69,7 @@ function ListInputForm() {
         <div className={`${!showEmojiPicker && "hidden"} fixed bottom-14`}>
           <Picker
             data={data}
-            onEmojiSelect={(emoji: string, event: Event) => {
+            onEmojiSelect={(emoji: { native: string }, event: Event) => {
               setInputForm((prev) => ({ ...prev, emoji: emoji.native }));
             }}
             onClickOutside={() => {

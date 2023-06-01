@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ListDeleteButton } from "./buttons";
 
 interface Props {
   task: {
@@ -16,7 +17,7 @@ function ListCard({ task }: Props) {
         return (
           <Link
             key={i}
-            className="hover:rounded-2xl transition-all duration-300 bg-slate-400/50 flex flex-col h-fit md:w-fit p-8 rounded-lg cursor-pointer shadow-md"
+            className="hover:rounded-2xl relative transition-all duration-300 bg-slate-400/50 flex flex-col h-fit md:w-fit p-8 rounded-lg cursor-pointer shadow-md"
             href={`/tasks/${t.id}`}
           >
             <h1 className="font-bold text-xl">
@@ -34,6 +35,9 @@ function ListCard({ task }: Props) {
                 month: "2-digit",
                 year: "2-digit",
               }).format(t.createdAt)}
+            </div>
+            <div className="flex justify-end mt-4">
+              <ListDeleteButton id={t.id} />
             </div>
           </Link>
         );

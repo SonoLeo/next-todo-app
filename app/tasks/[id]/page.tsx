@@ -1,5 +1,5 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import CheckBox from "@/components/CheckBox";
+import TaskCard from "@/components/TaskCard";
 import { prisma } from "@/lib/prisma";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
@@ -37,6 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 async function getCurrentTasks(id: string): Promise<(List & Task) | null> {
   const idNum = Number(id);
+  console.log(idNum);
 
   const result = await prisma.list.findUnique({
     include: {
@@ -70,7 +71,7 @@ async function page({ params }: Props) {
             key={i}
             className="grid rounded-lg grid-flow-row mx-auto my-2 p-8 w-full md:w-[450px] h-fit bg-slate-400/50"
           >
-            <CheckBox
+            <TaskCard
               id={task.id}
               completed={task.completed}
               name={task.name}

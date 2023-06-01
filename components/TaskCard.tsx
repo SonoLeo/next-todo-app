@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { TrashIcon } from "@heroicons/react/20/solid";
+import { TaskDeleteButton } from "./buttons";
 import { useRouter } from "next/navigation";
 
 interface Props {
@@ -15,13 +15,6 @@ const editTaskCompleted = async (id: number, isChecked: boolean) => {
   const res = await fetch(`/api/task/edit/`, {
     method: "POST",
     body: JSON.stringify({ completed: isChecked, id: id }),
-  });
-};
-
-const handleDelete = async (id: number) => {
-  const res = await fetch(`/api/task/delete/${id}`, {
-    method: "DELETE",
-    headers: { "Content-Type": "text/plain" },
   });
 };
 
@@ -41,19 +34,10 @@ function CheckBox({ id, completed, name, createdAt }: Props) {
               editTaskCompleted(id, !isChecked);
             }}
             checked={isChecked}
-            className="w-5 cursor-pointer mr-4"
+            className="w-3 cursor-pointer mr-4"
           />
-          <p className={`${isChecked && "line-through"} `}>
-            {name} faofhdsaiof hiouasdfhiadsuhfiaduosh fiasdouhfas
-            diuohfsadiouhfs
-          </p>
-          <TrashIcon
-            onClick={() => {
-              handleDelete(id);
-              router.refresh();
-            }}
-            className="w-6 absolute right-0 top-0 cursor-pointer fill-red-600 hover:fill-red-700 transition-colors duration-300"
-          />
+          <p className={`${isChecked && "line-through"} `}>{name}</p>
+          <TaskDeleteButton id={id} />
         </div>
       </div>
       <div className="flex justify-end py-2">

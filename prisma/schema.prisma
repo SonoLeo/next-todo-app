@@ -63,7 +63,7 @@ model List {
   name        String
   description String?
   createdAt   DateTime @default(now())
-  user        User     @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   tasks       Task[]
 }
 
@@ -73,5 +73,5 @@ model Task {
   name      String
   completed Boolean  @default(false)
   createdAt DateTime @default(now())
-  list      List     @relation(fields: [listId], references: [id])
+  list      List     @relation(fields: [listId], references: [id], onDelete: Cascade)
 }

@@ -6,7 +6,9 @@ import Image from "next/image";
 import {
   ArrowLeftOnRectangleIcon,
   ArrowRightOnRectangleIcon,
+  TrashIcon,
 } from "@heroicons/react/20/solid";
+import { useRouter } from "next/navigation";
 
 export function SignInButton() {
   const { data: session, status } = useSession();
@@ -53,4 +55,54 @@ export function SignOutButton() {
       </button>
     );
   } else return <></>;
+}
+
+export function TaskDeleteButton({ id }: { id: number }) {
+  const handleDelete = async () => {
+    const res = await fetch(`/api/task/delete/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+
+    return res;
+  };
+
+  const router = useRouter();
+
+  return (
+    <div>
+      <TrashIcon
+        onClick={() => {
+          handleDelete();
+          router.refresh();
+        }}
+        className="w-6 absolute right-0 top-0 cursor-pointer fill-red-600 hover:fill-red-700 transition-colors duration-300"
+      />
+    </div>
+  );
+}
+
+export function ListDeleteButton({ id }: { id: number }) {
+  const router = useRouter();
+
+  const handleDelete = async () => {
+    const res = await fetch(`/api/list/delete/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+
+    return res;
+  };
+
+  return (
+    <>
+      <TrashIcon
+        onClick={() => {
+          handleDelete();
+          router.refresh();
+        }}
+        className="w-6 z-100 cursor-pointer fill-red-600 hover:fill-red-700 transition-colors duration-300"
+      />
+    </>
+  );
 }
