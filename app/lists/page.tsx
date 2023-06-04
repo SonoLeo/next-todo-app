@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import ListCard from "@/components/ListCard";
 import { Metadata } from "next";
-import ListInputForm from "@/components/ListInputForm";
+import ListInputForm from "@/components/forms/ListInputForm";
 
 export const metadata: Metadata = {};
 

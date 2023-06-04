@@ -1,6 +1,6 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import TaskCard from "@/components/TaskCard";
-import TaskInputForm from "@/components/TaskInputForm";
+import TaskInputForm from "@/components/forms/TaskInputForm";
 import { prisma } from "@/lib/prisma";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";

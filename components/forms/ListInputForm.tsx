@@ -5,8 +5,8 @@ import { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { MagnifyingGlassCircleIcon } from "@heroicons/react/20/solid";
-import Picker from "@emoji-mart/react";
-import data from "@emoji-mart/data";
+import EmojiPicker from "../client/EmojiPicker";
+import { List } from "@prisma/client";
 
 interface InputForm {
   emoji: string;
@@ -19,8 +19,6 @@ const handleClick = async (
   inputForm: InputForm,
   session: Session
 ) => {
-  e.preventDefault();
-
   if (!inputForm.name || !inputForm.emoji || !inputForm.description)
     return alert("Something");
 
@@ -48,36 +46,11 @@ function ListInputForm() {
 
   return (
     <form className="flex fixed gap-2 bottom-0 mx-auto p-2 justify-center w-full items-center">
-      <div className="relative">
-        <input
-          type="text"
-          name="emoji"
-          className="w-14 rounded-lg bg-slate-300 p-2"
-          placeholder="😀"
-          value={inputForm.emoji}
-          readOnly
-        />
-        <button
-          className="absolute top-0 bottom-0 right-0"
-          onClick={(e) => {
-            e.preventDefault();
-            setShowEmojiPicker(!showEmojiPicker);
-          }}
-        >
-          <MagnifyingGlassCircleIcon className="w-6" />
-        </button>
-        <div className={`${!showEmojiPicker && "hidden"} fixed bottom-14`}>
-          <Picker
-            data={data}
-            onEmojiSelect={(emoji: { native: string }, event: Event) => {
-              setInputForm((prev) => ({ ...prev, emoji: emoji.native }));
-            }}
-            onClickOutside={() => {
-              if (showEmojiPicker) setShowEmojiPicker(false);
-            }}
-          />
-        </div>
-      </div>
+      <EmojiPicker
+        list={inputForm}
+        setList={setInputForm}
+        pickerPositionClass={"bottom-12"}
+      />
       <input
         type="text"
         name="name"
@@ -96,6 +69,7 @@ function ListInputForm() {
         type="submit"
         value="Submit"
         onClick={(e) => {
+          e.preventDefault();
           handleClick(e, inputForm, session!);
           router.refresh();
         }}
